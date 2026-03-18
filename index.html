@@ -97,7 +97,8 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 999;
       padding: 6px 0;
       background: var(--bg);
-      transition: background .3s, border-color .3s, backdrop-filter .3s;
+      will-change: transform;
+      transition: background .3s, backdrop-filter .3s;
     }
     nav.scrolled {
       background: rgba(7,7,15,.8);
@@ -1805,4 +1806,3 @@
   })();
 </script>
 </body>
-</html>
