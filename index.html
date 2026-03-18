@@ -1758,7 +1758,12 @@
         alpha: rand(0.25, 0.65)
       };
     }
-    function init() { resize(); particles = Array.from({ length: COUNT }, makeParticle); }
+    function init() {
+      resize();
+      if (W === 0 || H === 0) { setTimeout(init, 50); return; }
+      particles = Array.from({ length: COUNT }, makeParticle);
+      loop();
+    }
     function draw() {
       ctx.clearRect(0, 0, W, H);
       for (let i = 0; i < particles.length; i++) {
@@ -1794,9 +1799,9 @@
       }
     }
     function loop() { update(); draw(); requestAnimationFrame(loop); }
-    init();
-    loop();
     window.addEventListener('resize', resize);
+    if (document.readyState === 'complete') { init(); }
+    else { window.addEventListener('load', init); }
   })();
 </script>
 </body>
