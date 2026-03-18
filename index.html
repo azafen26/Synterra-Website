@@ -16,7 +16,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
     /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -124,11 +123,10 @@
     .mobile-menu-close { position: absolute; top: 24px; right: 24px; background: none; border: none; color: var(--text); font-size: 28px; cursor: pointer; }
 
     @media (max-width: 768px) {
-      .nav-links, .nav-cta .btn-ghost { display: none; }
+      .nav-links, .nav-cta { display: none; }
       .nav-logo { display: none; }
       .hamburger { display: flex; order: -1; }
-      .nav-inner { position: relative; justify-content: flex-start; }
-      .nav-cta { position: absolute; left: 50%; transform: translateX(-50%); }
+      .nav-inner { justify-content: flex-start; }
     }
 
     /* ── Hero ── */
@@ -772,14 +770,7 @@
     </div>
     <div class="nav-cta">
       <a href="#cta" class="btn-ghost">Learn More</a>
-      <div class="call-dropdown" id="nav-call-dropdown">
-        <button class="btn-primary call-toggle" onclick="toggleCall('nav-call-dropdown')">Book a Call</button>
-        <div class="call-menu">
-          <div class="call-menu-label">Choose a number</div>
-          <a href="tel:+61434798682"><span>B2B Outreach</span> +61 434 798 682</a>
-          <a href="tel:+61402560006"><span>Web Development</span> +61 402 560 006</a>
-        </div>
-      </div>
+      <a href="book-a-call.html" class="btn-primary">Book a Call</a>
     </div>
     <div class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -794,14 +785,6 @@
   <a href="#results" class="mobile-link">Results</a>
   <a href="#how" class="mobile-link">How It Works</a>
   <a href="#webdev" class="mobile-link">Web Development</a>
-  <div class="call-dropdown" id="mobile-call-dropdown" style="margin-top:8px">
-    <button class="btn-primary call-toggle" onclick="toggleCall('mobile-call-dropdown')">Book a Call →</button>
-    <div class="call-menu">
-      <div class="call-menu-label">Choose a number</div>
-      <a href="tel:+61434798682"><span>B2B Outreach</span> +61 434 798 682</a>
-      <a href="tel:+61402560006"><span>Web Development</span> +61 402 560 006</a>
-    </div>
-  </div>
 </div>
 
 <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
@@ -819,14 +802,7 @@
         At Synterra Digital, we combine precision outreach and conversion-focused web design to fill your pipeline and close more deals — on autopilot.
       </p>
       <div class="hero-btns">
-        <div class="call-dropdown" id="hero-call-dropdown">
-          <button class="btn-primary call-toggle" onclick="toggleCall('hero-call-dropdown')">Book a Free Call →</button>
-          <div class="call-menu">
-            <div class="call-menu-label">Choose a number</div>
-            <a href="tel:+61434798682"><span>B2B Outreach</span> +61 434 798 682</a>
-            <a href="tel:+61402560006"><span>Web Development</span> +61 402 560 006</a>
-          </div>
-        </div>
+        <a href="book-a-call.html" class="btn-primary">Book a Free Call →</a>
         <a href="#results" class="btn-ghost">See Real Results</a>
       </div>
       <div class="hero-stats" id="hero-stats">
@@ -1541,6 +1517,7 @@
       <div class="cta-btns">
         <a href="#outreach-form" class="btn-primary" style="font-size:16px; padding:16px 36px">Start B2B Outreach →</a>
         <a href="#webdev-form" class="btn-primary" style="font-size:16px; padding:16px 36px">Get a Website →</a>
+        <a href="book-a-call.html" class="btn-primary" style="font-size:16px; padding:16px 36px">Book a Call →</a>
       </div>
       <p class="cta-note">No lock-in contracts. No setup fees. Results from week one.</p>
     </div>
@@ -1685,13 +1662,8 @@
     dashObserver.observe(dashboardEl);
   }
 
-  // ── EmailJS ──
-  // Replace the three placeholder values below with your own from emailjs.com
-  const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // e.g. 'abc123XYZ'
-  const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // e.g. 'service_xxxxxxx'
-  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // e.g. 'template_xxxxxxx'
-
-  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  // ── Web3Forms ──
+  const W3F_KEY = '7c720ea1-7eac-4289-9094-5a54b6dfe628';
 
   function setupForm(formId, successId, formLabel) {
     const form = document.getElementById(formId);
@@ -1701,7 +1673,6 @@
     form.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      // Validate
       let valid = true;
       form.querySelectorAll('[required]').forEach(f => {
         if (!f.value.trim()) { f.style.borderColor = '#f87171'; valid = false; }
@@ -1714,31 +1685,41 @@
       btn.classList.add('sending');
       btn.textContent = 'Sending';
 
-      // Remove old error if any
       const oldErr = form.querySelector('.form-error');
       if (oldErr) oldErr.remove();
 
-      // Build template params — these match the variable names in your EmailJS template
-      const params = {
-        form_type:  formLabel,
-        first_name: form.querySelector('[id$="-first"]')?.value || '',
-        last_name:  form.querySelector('[id$="-last"]')?.value  || '',
-        email:      form.querySelector('[id$="-email"]')?.value || '',
-        phone:      form.querySelector('[id$="-phone"]')?.value || '',
-        comments:   form.querySelector('textarea')?.value       || '',
+      const data = {
+        access_key: W3F_KEY,
+        subject:    formLabel + ' — Synterra Digital',
+        from_name:  'Synterra Digital Website',
+        'Form Type':   formLabel,
+        'First Name':  form.querySelector('[id$="-first"]')?.value || '',
+        'Last Name':   form.querySelector('[id$="-last"]')?.value  || '',
+        'Email':       form.querySelector('[id$="-email"]')?.value || '',
+        'Phone':       form.querySelector('[id$="-phone"]')?.value || '',
+        'Message':     form.querySelector('textarea')?.value       || '',
       };
 
-      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
-        .then(() => {
-          form.style.display = 'none';
-          success.style.display = 'block';
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(r => r.json())
+        .then(res => {
+          if (res.success) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+          } else {
+            throw new Error(res.message || 'Submission failed');
+          }
         })
-        .catch(() => {
+        .catch((error) => {
           btn.classList.remove('sending');
           btn.textContent = originalText;
           const err = document.createElement('p');
           err.className = 'form-error';
-          err.textContent = 'Something went wrong — please try again or email us directly at synterradigital@gmail.com';
+          err.textContent = 'Error: ' + error.message;
           form.appendChild(err);
         });
     });
