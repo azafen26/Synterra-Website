@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Call — Synterra Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #07070f;
+      --bg2:      #0c0c18;
+      --surface:  #111122;
+      --surface2: #16162a;
+      --border:   rgba(255,255,255,0.06);
+      --border2:  rgba(255,255,255,0.1);
+      --a1:       #7c6dfa;
+      --a2:       #00c8ff;
+      --a3:       #b36bff;
+      --grad:     linear-gradient(135deg, #7c6dfa 0%, #b36bff 55%, #00c8ff 100%);
+      --text:     #eeeeff;
+      --muted:    #7878a0;
+      --r:        14px;
+      --ease:     cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.65;
+    }
+
+    ::selection { background: var(--a1); color: #fff; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--a1); border-radius: 3px; }
+
+    .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Top bar ── */
+    .topbar {
+      position: sticky; top: 0; z-index: 99;
+      background: rgba(7,7,15,.85); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .topbar-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--muted); font-size: 14px; font-weight: 500;
+      text-decoration: none; transition: color .2s;
+    }
+    .topbar-back:hover { color: var(--text); }
+    .topbar-back svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2; fill: none; }
+    .topbar-brand {
+      font-size: 15px; font-weight: 800; letter-spacing: -.02em;
+    }
+
+    /* ── Page layout ── */
+    .page-wrap {
+      max-width: 1080px; margin: 0 auto; padding: 56px 24px 80px;
+      display: grid; grid-template-columns: 1fr 1.6fr; gap: 48px; align-items: start;
+    }
+
+    /* ── Left panel ── */
+    .info-panel { position: sticky; top: 90px; }
+    .info-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--a2); border: 1px solid rgba(0,200,255,0.2);
+      padding: 5px 12px; border-radius: 100px;
+      background: rgba(0,200,255,0.05); margin-bottom: 24px;
+    }
+    .info-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--a2); animation: pulse 2s ease infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.4)} }
+
+    .info-panel h1 {
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 900; line-height: 1.1; letter-spacing: -.03em;
+      margin-bottom: 14px;
+    }
+    .info-panel p {
+      font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 32px;
+    }
+
+    .what-to-expect { display: flex; flex-direction: column; gap: 16px; margin-bottom: 36px; }
+    .expect-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px 18px;
+    }
+    .expect-icon {
+      flex-shrink: 0; width: 36px; height: 36px; border-radius: 9px;
+      background: rgba(124,109,250,.1); border: 1px solid rgba(124,109,250,.2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .expect-icon svg { width: 17px; height: 17px; }
+    .expect-text strong { font-size: 14px; font-weight: 700; display: block; margin-bottom: 2px; }
+    .expect-text span { font-size: 13px; color: var(--muted); }
+
+    .duration-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.04); border: 1px solid var(--border2);
+      border-radius: 100px; padding: 8px 16px; font-size: 13px; color: var(--muted);
+    }
+    .duration-badge svg { width: 14px; height: 14px; stroke: var(--a2); fill: none; stroke-width: 2; }
+
+    /* ── Form panel ── */
+    .form-panel {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 40px 44px;
+    }
+
+    .form-section-title {
+      font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--a1); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;
+    }
+    .form-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+    .form-group label {
+      font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--bg2); border: 1px solid var(--border2);
+      color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px;
+      padding: 13px 16px; border-radius: 10px; outline: none;
+      transition: border-color .2s, box-shadow .2s; width: 100%;
+      -webkit-appearance: none;
+    }
+    .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237878a0' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+    .form-group select option { background: #0c0c18; }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--a1); box-shadow: 0 0 0 3px rgba(124,109,250,.15);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    /* Service pills */
+    .service-pills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .service-pill {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      padding: 16px 10px; border-radius: 12px;
+      background: var(--bg2); border: 1px solid var(--border2);
+      cursor: pointer; transition: all .2s; text-align: center;
+    }
+    .service-pill:hover { border-color: rgba(124,109,250,.4); background: rgba(124,109,250,.05); }
+    .service-pill.selected { border-color: var(--a1); background: rgba(124,109,250,.1); box-shadow: 0 0 0 1px var(--a1); }
+    .service-pill svg { width: 22px; height: 22px; }
+    .service-pill span { font-size: 13px; font-weight: 600; }
+    .service-pill input[type="radio"] { display: none; }
+
+    /* Calendar */
+    .calendar-wrap {
+      background: var(--bg2); border: 1px solid var(--border2);
+      border-radius: 14px; overflow: hidden; margin-bottom: 16px;
+    }
+    .cal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; border-bottom: 1px solid var(--border);
+    }
+    .cal-title { font-size: 15px; font-weight: 700; }
+    .cal-nav { display: flex; gap: 4px; }
+    .cal-nav button {
+      background: rgba(255,255,255,.06); border: 1px solid var(--border2);
+      color: var(--text); border-radius: 8px; width: 30px; height: 30px;
+      cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    .cal-nav button:hover { background: rgba(255,255,255,.12); }
+    .cal-grid { padding: 16px 20px; }
+    .cal-days-header {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      text-align: center; margin-bottom: 8px;
+    }
+    .cal-days-header span { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; padding: 4px; }
+    .cal-days {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;
+    }
+    .cal-day {
+      aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+      border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer;
+      transition: all .15s; border: 1px solid transparent;
+    }
+    .cal-day:not(.disabled):not(.empty):hover { background: rgba(124,109,250,.15); border-color: rgba(124,109,250,.3); }
+    .cal-day.selected { background: var(--grad); color: #fff; font-weight: 700; }
+    .cal-day.today { border-color: var(--a2); color: var(--a2); }
+    .cal-day.today.selected { border-color: transparent; color: #fff; }
+    .cal-day.disabled { color: rgba(255,255,255,.18); cursor: default; }
+    .cal-day.empty { cursor: default; }
+    .cal-day.weekend { color: var(--muted); }
+    .selected-date-display {
+      font-size: 13px; color: var(--a2); text-align: center;
+      padding: 8px; font-weight: 600;
+      min-height: 34px;
+    }
+
+    /* Time slots */
+    .time-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .time-slot {
+      padding: 10px 8px; border-radius: 9px; text-align: center;
+      background: var(--bg2); border: 1px solid var(--border2);
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      transition: all .2s; color: var(--text);
+    }
+    .time-slot:hover { border-color: rgba(124,109,250,.4); background: rgba(124,109,250,.06); }
+    .time-slot.selected { background: rgba(124,109,250,.15); border-color: var(--a1); color: var(--a1); box-shadow: 0 0 0 1px var(--a1); }
+
+    /* Submit */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--grad); color: #fff; font-weight: 700; font-size: 16px;
+      padding: 16px 36px; border-radius: 100px; border: none; cursor: pointer;
+      text-decoration: none; transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+      width: 100%; justify-content: center; margin-top: 8px;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(124,109,250,.45); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .form-disclaimer { text-align: center; margin-top: 14px; font-size: 12px; color: var(--muted); }
+
+    /* Sending state */
+    .btn-primary.sending { opacity: .7; pointer-events: none; }
+    .btn-primary.sending::after { content: ''; display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; margin-left: 8px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .form-error { text-align: center; margin-top: 12px; font-size: 13px; color: #f87171; }
+
+    /* Success */
+    .form-success {
+      display: none; text-align: center; padding: 48px 32px;
+    }
+    .success-icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.25);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+    }
+    .success-icon svg { width: 32px; height: 32px; stroke: #22c55e; fill: none; stroke-width: 2; }
+    .form-success h3 { font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+    .form-success p { font-size: 15px; color: var(--muted); max-width: 340px; margin: 0 auto 28px; }
+    .form-success a {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--a2); font-size: 14px; font-weight: 600; text-decoration: none;
+      border: 1px solid rgba(0,200,255,.25); padding: 10px 22px; border-radius: 100px;
+      transition: background .2s;
+    }
+    .form-success a:hover { background: rgba(0,200,255,.07); }
+
+    /* Glow */
+    .page-glow {
+      position: fixed; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 600px; pointer-events: none; z-index: 0;
+      background: radial-gradient(ellipse, rgba(124,109,250,.12) 0%, transparent 65%);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 860px) {
+      .page-wrap { grid-template-columns: 1fr; gap: 32px; padding: 32px 20px 60px; }
+      .info-panel { position: static; }
+    }
+    @media (max-width: 540px) {
+      .form-panel { padding: 28px 20px; }
+      .form-row { grid-template-columns: 1fr; }
+      .service-pills { grid-template-columns: 1fr; }
+      .time-slots { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-glow"></div>
+
+<!-- Top bar -->
+<div class="topbar">
+  <a href="index.html" class="topbar-back">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Home
+  </a>
+  <div class="topbar-brand"><span class="grad-text">Synterra Digital</span></div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ── Left: Info Panel ── -->
+  <aside class="info-panel">
+    <div class="info-tag">Free Discovery Call</div>
+    <h1>Let's Talk About<br/><span class="grad-text">Your Growth.</span></h1>
+    <p>Book a free 30-minute discovery call with our team. We'll learn about your business, walk you through how we work, and put together a tailored strategy — no obligation.</p>
+
+    <div class="what-to-expect">
+      <div class="expect-item">
+        <div class="expect-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="url(#ei1)" stroke-width="1.8" stroke-linecap="round">
+            <defs><linearGradient id="ei1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c6dfa"/><stop offset="100%" stop-color="#00c8ff"/></linearGradient></defs>
+            <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+          </svg>
+        </div>
+        <div class="expect-text">
+          <strong>Understand your goals</strong>
+          <span>We'll learn what you're trying to achieve and who you're targeting</span>
+        </div>
+      </div>
+      <div class="expect-item">
+        <div class="expect-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="url(#ei2)" stroke-width="1.8" stroke-linecap="round">
+            <defs><linearGradient id="ei2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c6dfa"/><stop offset="100%" stop-color="#b36bff"/></linearGradient></defs>
+            <path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/>
+          </svg>
+        </div>
+        <div class="expect-text">
+          <strong>Tailored strategy session</strong>
+          <span>We'll outline a custom outreach or web plan specific to your industry</span>
+        </div>
+      </div>
+      <div class="expect-item">
+        <div class="expect-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="url(#ei3)" stroke-width="1.8" stroke-linecap="round">
+            <defs><linearGradient id="ei3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#b36bff"/><stop offset="100%" stop-color="#00c8ff"/></linearGradient></defs>
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+          </svg>
+        </div>
+        <div class="expect-text">
+          <strong>Clear next steps</strong>
+          <span>You'll leave knowing exactly what to do to start generating leads</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="duration-badge">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      30 minutes · Free · No obligation
+    </div>
+  </aside>
+
+  <!-- ── Right: Booking Form ── -->
+  <div class="form-panel">
+
+    <form id="booking-form">
+
+      <!-- 1. Your Details -->
+      <div class="form-section-title">Your Details</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="b-first">First Name</label>
+          <input type="text" id="b-first" placeholder="John" required />
+        </div>
+        <div class="form-group">
+          <label for="b-last">Last Name</label>
+          <input type="text" id="b-last" placeholder="Smith" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="b-email">Email Address</label>
+          <input type="email" id="b-email" placeholder="john@company.com" required />
+        </div>
+        <div class="form-group">
+          <label for="b-phone">Phone Number</label>
+          <input type="tel" id="b-phone" placeholder="+61 400 000 000" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="b-company">Business Name</label>
+          <input type="text" id="b-company" placeholder="Acme Pty Ltd" />
+        </div>
+        <div class="form-group">
+          <label for="b-industry">Industry</label>
+          <input type="text" id="b-industry" placeholder="e.g. Landscaping, Real Estate…" />
+        </div>
+      </div>
+
+      <!-- 2. What are you interested in? -->
+      <div class="form-section-title" style="margin-top:8px">I'm Interested In</div>
+
+      <div class="form-group" style="margin-bottom:24px">
+        <div class="service-pills">
+          <label class="service-pill" id="pill-outreach">
+            <input type="radio" name="service" value="B2B Outreach" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#sp1)" stroke-width="1.8" stroke-linecap="round">
+              <defs><linearGradient id="sp1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c6dfa"/><stop offset="100%" stop-color="#00c8ff"/></linearGradient></defs>
+              <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <span>B2B Outreach</span>
+          </label>
+          <label class="service-pill" id="pill-webdev">
+            <input type="radio" name="service" value="Web Development" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#sp2)" stroke-width="1.8" stroke-linecap="round">
+              <defs><linearGradient id="sp2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c6dfa"/><stop offset="100%" stop-color="#b36bff"/></linearGradient></defs>
+              <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+            </svg>
+            <span>Web Development</span>
+          </label>
+          <label class="service-pill" id="pill-both">
+            <input type="radio" name="service" value="Both Services" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#sp3)" stroke-width="1.8" stroke-linecap="round">
+              <defs><linearGradient id="sp3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#b36bff"/><stop offset="100%" stop-color="#00c8ff"/></linearGradient></defs>
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+            <span>Both</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 3. Pick a Date -->
+      <div class="form-section-title">Preferred Date</div>
+
+      <div class="calendar-wrap">
+        <div class="cal-header">
+          <div class="cal-title" id="cal-title"></div>
+          <div class="cal-nav">
+            <button type="button" id="cal-prev" aria-label="Previous month">&#8249;</button>
+            <button type="button" id="cal-next" aria-label="Next month">&#8250;</button>
+          </div>
+        </div>
+        <div class="cal-grid">
+          <div class="cal-days-header">
+            <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+          </div>
+          <div class="cal-days" id="cal-days"></div>
+        </div>
+      </div>
+      <div class="selected-date-display" id="selected-date-display">Select a date above</div>
+      <input type="hidden" id="b-date" />
+
+      <!-- 4. Pick a Time -->
+      <div class="form-section-title" style="margin-top:24px">Preferred Time <span style="font-size:11px;color:var(--muted);text-transform:none;letter-spacing:0;font-weight:500">(AEST)</span></div>
+
+      <div class="form-group" style="margin-bottom:24px">
+        <div class="time-slots" id="time-slots">
+          <div class="time-slot" data-time="9:00 AM">9:00 AM</div>
+          <div class="time-slot" data-time="10:00 AM">10:00 AM</div>
+          <div class="time-slot" data-time="11:00 AM">11:00 AM</div>
+          <div class="time-slot" data-time="12:00 PM">12:00 PM</div>
+          <div class="time-slot" data-time="1:00 PM">1:00 PM</div>
+          <div class="time-slot" data-time="2:00 PM">2:00 PM</div>
+          <div class="time-slot" data-time="3:00 PM">3:00 PM</div>
+          <div class="time-slot" data-time="4:00 PM">4:00 PM</div>
+          <div class="time-slot" data-time="5:00 PM">5:00 PM</div>
+        </div>
+        <input type="hidden" id="b-time" />
+      </div>
+
+      <!-- 5. Anything else? -->
+      <div class="form-section-title">Anything to Share?</div>
+
+      <div class="form-group">
+        <label for="b-notes">Tell us a bit about your business or what you'd like to discuss</label>
+        <textarea id="b-notes" placeholder="e.g. We're a removals company looking to reach real estate agents in Brisbane. Happy to discuss both outreach and a website redesign…"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="b-heard">How Did You Hear About Us?</label>
+        <select id="b-heard">
+          <option value="" disabled selected>Select an option</option>
+          <option>Google Search</option>
+          <option>Social Media</option>
+          <option>Referral from a friend or colleague</option>
+          <option>Email outreach</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-primary" id="submit-btn">Confirm My Booking →</button>
+      <p class="form-disclaimer">We'll confirm your call within a few hours. No spam, ever.</p>
+
+    </form>
+
+    <!-- Success state -->
+    <div class="form-success" id="booking-success">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>You're booked in!</h3>
+      <p>We've received your request and will confirm your call time within a few hours at the email you provided.</p>
+      <a href="index.html">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Home
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ── Calendar ──
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  let viewYear, viewMonth, selectedDate = null;
+
+  function initCalendar() {
+    const now = new Date();
+    viewYear  = now.getFullYear();
+    viewMonth = now.getMonth();
+    renderCalendar();
+  }
+
+  function renderCalendar() {
+    const title = document.getElementById('cal-title');
+    const grid  = document.getElementById('cal-days');
+    title.textContent = MONTHS[viewMonth] + ' ' + viewYear;
+    grid.innerHTML = '';
+
+    const today = new Date(); today.setHours(0,0,0,0);
+    const firstDay = new Date(viewYear, viewMonth, 1).getDay();
+    const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+
+    // Empty cells before first day
+    for (let i = 0; i < firstDay; i++) {
+      const el = document.createElement('div');
+      el.className = 'cal-day empty';
+      grid.appendChild(el);
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const date = new Date(viewYear, viewMonth, d);
+      date.setHours(0,0,0,0);
+      const el = document.createElement('div');
+      el.className = 'cal-day';
+      el.textContent = d;
+
+      const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+      const isPast    = date < today;
+
+      if (isPast)    el.classList.add('disabled');
+      if (isWeekend) el.classList.add('weekend');
+      if (date.getTime() === today.getTime()) el.classList.add('today');
+
+      if (selectedDate && date.getTime() === selectedDate.getTime()) el.classList.add('selected');
+
+      if (!isPast) {
+        el.addEventListener('click', () => selectDate(new Date(viewYear, viewMonth, d)));
+      }
+
+      grid.appendChild(el);
+    }
+  }
+
+  function selectDate(date) {
+    selectedDate = date;
+    document.getElementById('b-date').value = date.toLocaleDateString('en-AU', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+    document.getElementById('selected-date-display').textContent = '📅 ' + date.toLocaleDateString('en-AU', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+    renderCalendar();
+  }
+
+  document.getElementById('cal-prev').addEventListener('click', () => {
+    viewMonth--;
+    if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+    renderCalendar();
+  });
+  document.getElementById('cal-next').addEventListener('click', () => {
+    viewMonth++;
+    if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+    renderCalendar();
+  });
+
+  initCalendar();
+
+  // ── Time slots ──
+  let selectedTime = '';
+  document.querySelectorAll('.time-slot').forEach(slot => {
+    slot.addEventListener('click', () => {
+      document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+      slot.classList.add('selected');
+      selectedTime = slot.dataset.time;
+      document.getElementById('b-time').value = selectedTime;
+    });
+  });
+
+  // ── Service pills ──
+  document.querySelectorAll('.service-pill input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.service-pill').forEach(p => p.classList.remove('selected'));
+      radio.closest('.service-pill').classList.add('selected');
+    });
+  });
+
+  // ── Web3Forms ──
+  const W3F_KEY = '7c720ea1-7eac-4289-9094-5a54b6dfe628';
+
+  document.getElementById('booking-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    let valid = true;
+    this.querySelectorAll('[required]').forEach(f => {
+      if (!f.value.trim()) { f.style.borderColor = '#f87171'; valid = false; }
+      else f.style.borderColor = '';
+    });
+
+    const serviceEl = document.querySelector('input[name="service"]:checked');
+    if (!serviceEl) {
+      document.querySelectorAll('.service-pill').forEach(p => p.style.borderColor = '#f87171');
+      valid = false;
+    }
+    if (!selectedDate) {
+      document.getElementById('selected-date-display').style.color = '#f87171';
+      document.getElementById('selected-date-display').textContent = '⚠ Please select a date';
+      valid = false;
+    }
+    if (!selectedTime) {
+      document.getElementById('time-slots').style.outline = '1px solid #f87171';
+      document.getElementById('time-slots').style.borderRadius = '9px';
+      valid = false;
+    }
+    if (!valid) return;
+
+    const btn = document.getElementById('submit-btn');
+    btn.classList.add('sending');
+    btn.textContent = 'Sending';
+
+    const oldErr = this.querySelector('.form-error');
+    if (oldErr) oldErr.remove();
+
+    const data = {
+      access_key:    W3F_KEY,
+      subject:       'New Call Booking — Synterra Digital',
+      from_name:     'Synterra Digital Website',
+      'Form Type':   'Call Booking',
+      'First Name':  document.getElementById('b-first').value,
+      'Last Name':   document.getElementById('b-last').value,
+      'Email':       document.getElementById('b-email').value,
+      'Phone':       document.getElementById('b-phone').value,
+      'Business':    document.getElementById('b-company').value,
+      'Industry':    document.getElementById('b-industry').value,
+      'Service':     serviceEl ? serviceEl.value : '',
+      'Date':        document.getElementById('b-date').value,
+      'Time':        selectedTime,
+      'Notes':       document.getElementById('b-notes').value,
+      'How They Heard': document.getElementById('b-heard').value,
+    };
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(r => r.json())
+      .then(res => {
+        if (res.success) {
+          document.getElementById('booking-form').style.display = 'none';
+          document.getElementById('booking-success').style.display = 'block';
+        } else {
+          throw new Error(res.message || 'Submission failed');
+        }
+      })
+      .catch((error) => {
+        btn.classList.remove('sending');
+        btn.textContent = 'Confirm My Booking →';
+        const err = document.createElement('p');
+        err.className = 'form-error';
+        err.textContent = 'Error: ' + error.message;
+        document.getElementById('booking-form').appendChild(err);
+      });
+  });
+</script>
+</body>
+</html>
