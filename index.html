@@ -13,7 +13,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Synterra Digital — Scale Faster. Convert More." />
   <meta name="twitter:description" content="Precision B2B outreach and web development that fills your pipeline and closes more deals." />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%237c6dfa'/><stop offset='55%25' stop-color='%23b36bff'/><stop offset='100%25' stop-color='%2300c8ff'/></linearGradient></defs><text x='16' y='26' text-anchor='middle' font-family='Arial,sans-serif' font-weight='900' font-size='30' fill='url(%23g)'>S</text></svg>"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%23c8ff00'/><stop offset='55%25' stop-color='%23f0ff00'/><stop offset='100%25' stop-color='%2380ff40'/></linearGradient></defs><text x='16' y='26' text-anchor='middle' font-family='Arial,sans-serif' font-weight='900' font-size='30' fill='url(%23g)'>S</text></svg>"/>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet" />
@@ -22,18 +22,18 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #07070f;
-      --bg2:      #0c0c18;
-      --surface:  #111122;
-      --surface2: #16162a;
+      --bg:       #000000;
+      --bg2:      #050505;
+      --surface:  #0d0d0d;
+      --surface2: #111111;
       --border:   rgba(255,255,255,0.06);
       --border2:  rgba(255,255,255,0.1);
-      --a1:       #7c6dfa;   /* violet */
-      --a2:       #00c8ff;   /* cyan   */
-      --a3:       #b36bff;   /* purple */
-      --grad:     linear-gradient(135deg, #7c6dfa 0%, #b36bff 55%, #00c8ff 100%);
-      --text:     #eeeeff;
-      --muted:    #7878a0;
+      --a1:       #c8ff00;   /* lime   */
+      --a2:       #80ff40;   /* green  */
+      --a3:       #f0ff00;   /* yellow */
+      --grad:     linear-gradient(135deg, #f0ff00 0%, #c8ff00 55%, #80ff40 100%);
+      --text:     #ffffff;
+      --muted:    #888888;
       --r:        14px;
       --ease:     cubic-bezier(0.16, 1, 0.3, 1);
       --max:      1160px;
@@ -65,9 +65,9 @@
     .tag {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--a2); border: 1px solid rgba(0,200,255,0.2);
+      color: var(--a2); border: 1px solid rgba(128,255,64,0.2);
       padding: 5px 12px; border-radius: 100px;
-      background: rgba(0,200,255,0.05);
+      background: rgba(128,255,64,0.05);
     }
     .tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--a2); flex-shrink: 0; animation: pulse 2s ease infinite; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.4)} }
@@ -79,9 +79,9 @@
       color: #fff; font-weight: 700; font-size: 15px;
       padding: 14px 30px; border-radius: 100px; border: none; cursor: pointer;
       text-decoration: none; transition: transform .25s var(--ease), box-shadow .25s var(--ease), opacity .2s;
-      box-shadow: 0 0 0 rgba(124,109,250,0);
+      box-shadow: 0 0 0 rgba(200,255,0,0);
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(124,109,250,.45); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(200,255,0,.45); }
     .btn-primary:active { transform: translateY(0); }
 
     .btn-ghost {
@@ -102,7 +102,7 @@
       transition: background .3s, backdrop-filter .3s;
     }
     nav.scrolled {
-      background: rgba(7,7,15,.8);
+      background: rgba(0,0,0,.8);
       backdrop-filter: blur(20px);
     }
     .nav-inner {
@@ -144,12 +144,12 @@
     .hero-glow-1 {
       top: -200px; left: 50%; transform: translateX(-50%);
       width: 900px; height: 900px;
-      background: radial-gradient(circle, rgba(124,109,250,.18) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(200,255,0,.18) 0%, transparent 65%);
     }
     .hero-glow-2 {
       bottom: -100px; right: -150px;
       width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(0,200,255,.12) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(128,255,64,.12) 0%, transparent 65%);
     }
     .hero-content {
       position: relative; z-index: 1;
@@ -206,7 +206,7 @@
     .outreach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .outreach-card .icon-wrap {
       width: 48px; height: 48px; border-radius: 12px;
-      background: rgba(124,109,250,.12); border: 1px solid rgba(124,109,250,.2);
+      background: rgba(200,255,0,.12); border: 1px solid rgba(200,255,0,.2);
       display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
     }
     .outreach-card .icon-wrap svg { width: 22px; height: 22px; }
@@ -225,7 +225,7 @@
     .results-glow {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
       width: 700px; height: 700px; pointer-events: none;
-      background: radial-gradient(circle, rgba(124,109,250,.1) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(200,255,0,.1) 0%, transparent 65%);
     }
     .results-inner {
       position: relative; z-index: 1;
@@ -234,7 +234,7 @@
       display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
     }
     .results-badge {
-      display: inline-block; background: rgba(0,200,255,.08); border: 1px solid rgba(0,200,255,.2);
+      display: inline-block; background: rgba(128,255,64,.08); border: 1px solid rgba(128,255,64,.2);
       color: var(--a2); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
       padding: 6px 14px; border-radius: 100px; margin-bottom: 24px;
     }
@@ -265,8 +265,8 @@
       display: flex; align-items: center; justify-content: center; font-size: 20px;
     }
     .result-stat-icon.green { background: rgba(34,197,94,.1); }
-    .result-stat-icon.blue  { background: rgba(0,200,255,.1); }
-    .result-stat-icon.violet { background: rgba(124,109,250,.1); }
+    .result-stat-icon.blue  { background: rgba(128,255,64,.1); }
+    .result-stat-icon.violet { background: rgba(200,255,0,.1); }
     .result-stat-num { font-size: 28px; font-weight: 800; letter-spacing: -.02em; line-height: 1; }
     .result-stat-label { font-size: 13px; color: var(--muted); margin-top: 3px; }
 
@@ -292,19 +292,19 @@
     .step-example {
       display: inline-flex; align-items: center; gap: 6px;
       margin-top: 12px; font-size: 12px; color: var(--a2);
-      background: rgba(0,200,255,.06); border: 1px solid rgba(0,200,255,.15);
+      background: rgba(128,255,64,.06); border: 1px solid rgba(128,255,64,.15);
       padding: 4px 10px; border-radius: 100px;
     }
     .step-icon {
       flex-shrink: 0; width: 32px; height: 32px; border-radius: 8px;
-      background: rgba(124,109,250,.1); border: 1px solid rgba(124,109,250,.2);
+      background: rgba(200,255,0,.1); border: 1px solid rgba(200,255,0,.2);
       display: flex; align-items: center; justify-content: center;
       transition: background .25s, border-color .25s;
     }
     .step-icon svg { width: 15px; height: 15px; }
     .step-highlight {
       margin-top: 16px; padding: 14px 16px;
-      background: rgba(124,109,250,.07); border: 1px solid rgba(124,109,250,.15);
+      background: rgba(200,255,0,.07); border: 1px solid rgba(200,255,0,.15);
       border-radius: 10px; font-size: 13px; font-weight: 600; color: var(--a1);
     }
 
@@ -325,7 +325,7 @@
       background: rgba(34,197,94,.12); border: 1px solid rgba(34,197,94,.25);
       display: flex; align-items: center; justify-content: center; margin-top: 1px;
     }
-    .check svg { width: 11px; height: 11px; stroke: #22c55e; stroke-width: 2.5; }
+    .check svg { width: 11px; height: 11px; stroke: #c8ff00; stroke-width: 2.5; }
     .webdev-right { display: flex; flex-direction: column; gap: 16px; }
     .deliver-card {
       display: flex; align-items: center; gap: 16px;
@@ -336,7 +336,7 @@
     .deliver-card:hover { border-color: var(--border2); transform: translateX(4px); }
     .deliver-icon {
       width: 42px; height: 42px; flex-shrink: 0; border-radius: 10px;
-      background: rgba(124,109,250,.1); border: 1px solid rgba(124,109,250,.2);
+      background: rgba(200,255,0,.1); border: 1px solid rgba(200,255,0,.2);
       display: flex; align-items: center; justify-content: center;
     }
     .deliver-icon svg { width: 20px; height: 20px; }
@@ -354,7 +354,7 @@
     #cta .cta-glow {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
       width: 800px; height: 400px; pointer-events: none;
-      background: radial-gradient(ellipse, rgba(124,109,250,.15) 0%, transparent 65%);
+      background: radial-gradient(ellipse, rgba(200,255,0,.15) 0%, transparent 65%);
     }
     #cta .container { position: relative; z-index: 1; }
     #cta h2 { font-size: clamp(32px, 5vw, 60px); font-weight: 900; letter-spacing: -.03em; line-height: 1.1; margin-bottom: 20px; }
@@ -395,10 +395,10 @@
     }
     .pricing-card:hover { transform: translateY(-6px); box-shadow: 0 24px 64px rgba(0,0,0,.5); border-color: var(--border2); }
     .pricing-card.popular {
-      border-color: rgba(124,109,250,.4);
-      background: linear-gradient(160deg, rgba(124,109,250,.08) 0%, var(--surface) 60%);
+      border-color: rgba(200,255,0,.4);
+      background: linear-gradient(160deg, rgba(200,255,0,.08) 0%, var(--surface) 60%);
     }
-    .pricing-card.popular:hover { border-color: rgba(124,109,250,.7); }
+    .pricing-card.popular:hover { border-color: rgba(200,255,0,.7); }
     .popular-badge {
       position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
       background: var(--grad); color: #fff;
@@ -420,7 +420,7 @@
     .pricing-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text); }
     .pricing-features li .pf-icon {
       flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; margin-top: 1px;
-      background: rgba(124,109,250,.15); border: 1px solid rgba(124,109,250,.3);
+      background: rgba(200,255,0,.15); border: 1px solid rgba(200,255,0,.3);
       display: flex; align-items: center; justify-content: center;
     }
     .pricing-features li .pf-icon svg { width: 9px; height: 9px; stroke: var(--a1); stroke-width: 3; }
@@ -448,12 +448,12 @@
     .analytics-topbar-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
     .analytics-live {
       display: flex; align-items: center; gap: 7px;
-      font-size: 12px; font-weight: 600; color: #22c55e;
+      font-size: 12px; font-weight: 600; color: #c8ff00;
       background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.2);
       padding: 5px 12px; border-radius: 100px;
     }
     .analytics-live::before {
-      content: ''; width: 7px; height: 7px; border-radius: 50%; background: #22c55e;
+      content: ''; width: 7px; height: 7px; border-radius: 50%; background: #c8ff00;
       animation: pulse 1.5s ease infinite;
     }
     .metrics-row {
@@ -503,7 +503,7 @@
     .bar.deliveries { background: var(--a1); }
     .bar.opens      { background: var(--a2); }
     .bar.replies    { background: var(--a3); }
-    .bar.interested { background: #22c55e; }
+    .bar.interested { background: #c8ff00; }
     .chart-date { font-size: 10px; color: var(--muted); margin-top: 8px; white-space: nowrap; }
     .chart-legend {
       display: flex; gap: 20px; padding: 16px 28px 24px;
@@ -568,7 +568,7 @@
     .form-group input:focus,
     .form-group textarea:focus {
       border-color: var(--a1);
-      box-shadow: 0 0 0 3px rgba(124,109,250,.15);
+      box-shadow: 0 0 0 3px rgba(200,255,0,.15);
     }
     .form-group textarea { resize: vertical; min-height: 110px; }
     .form-submit { width: 100%; margin-top: 8px; justify-content: center; font-size: 16px; padding: 15px 32px; }
@@ -589,7 +589,7 @@
       transition: background .15s;
     }
     .call-menu a:hover { background: rgba(255,255,255,.06); }
-    .call-menu a span { flex-shrink: 0; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--a2); background: rgba(0,200,255,.08); border: 1px solid rgba(0,200,255,.2); padding: 2px 8px; border-radius: 100px; }
+    .call-menu a span { flex-shrink: 0; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--a2); background: rgba(128,255,64,.08); border: 1px solid rgba(128,255,64,.2); padding: 2px 8px; border-radius: 100px; }
     .call-menu-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 6px 14px 4px; }
 
     .form-submit.sending { opacity: .7; pointer-events: none; }
@@ -601,7 +601,7 @@
       background: rgba(34,197,94,.06); border: 1px solid rgba(34,197,94,.2);
       border-radius: 14px; margin-top: 16px;
     }
-    .form-success p { font-size: 16px; font-weight: 600; color: #22c55e; }
+    .form-success p { font-size: 16px; font-weight: 600; color: #c8ff00; }
     .form-success span { font-size: 13px; color: var(--muted); display: block; margin-top: 4px; }
     @media (max-width: 600px) {
       .form-row { grid-template-columns: 1fr; }
@@ -635,11 +635,11 @@
     .result-stat-card:hover { border-left-color: var(--a1); }
 
     /* Step number circle fill on hover */
-    .card.step-card:hover .step-icon { background: rgba(124,109,250,.22); border-color: rgba(124,109,250,.5); }
+    .card.step-card:hover .step-icon { background: rgba(200,255,0,.22); border-color: rgba(200,255,0,.5); }
 
     /* Tag pulse dot already animated; add glow to tag on hover */
     .tag { transition: box-shadow .25s, border-color .25s; }
-    .tag:hover { border-color: rgba(0,200,255,.45); box-shadow: 0 0 14px rgba(0,200,255,.12); }
+    .tag:hover { border-color: rgba(128,255,64,.45); box-shadow: 0 0 14px rgba(128,255,64,.12); }
 
     /* ── Noise overlay ── */
     body::before {
@@ -833,7 +833,7 @@
       <div class="card outreach-card fade-up">
         <div class="icon-wrap">
           <svg viewBox="0 0 24 24" fill="none" stroke="url(#g1)" stroke-width="1.8" stroke-linecap="round">
-            <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c6dfa"/><stop offset="100%" stop-color="#00c8ff"/></linearGradient></defs>
+            <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c8ff00"/><stop offset="100%" stop-color="#80ff40"/></linearGradient></defs>
             <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
           </svg>
         </div>
@@ -846,7 +846,7 @@
       <div class="card outreach-card fade-up" style="transition-delay:.1s">
         <div class="icon-wrap">
           <svg viewBox="0 0 24 24" fill="none" stroke="url(#g2)" stroke-width="1.8" stroke-linecap="round">
-            <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c6dfa"/><stop offset="100%" stop-color="#b36bff"/></linearGradient></defs>
+            <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c8ff00"/><stop offset="100%" stop-color="#f0ff00"/></linearGradient></defs>
             <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
           </svg>
         </div>
@@ -859,7 +859,7 @@
       <div class="card outreach-card fade-up" style="transition-delay:.2s">
         <div class="icon-wrap">
           <svg viewBox="0 0 24 24" fill="none" stroke="url(#g3)" stroke-width="1.8" stroke-linecap="round">
-            <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#b36bff"/><stop offset="100%" stop-color="#00c8ff"/></linearGradient></defs>
+            <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f0ff00"/><stop offset="100%" stop-color="#80ff40"/></linearGradient></defs>
             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
           </svg>
         </div>
@@ -1009,7 +1009,7 @@
         <div class="result-stat-card">
           <div class="result-stat-icon green">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#ri1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <defs><linearGradient id="ri1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#22c55e"/><stop offset="100%" stop-color="#00c8ff"/></linearGradient></defs>
+              <defs><linearGradient id="ri1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c8ff00"/><stop offset="100%" stop-color="#80ff40"/></linearGradient></defs>
               <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
             </svg>
           </div>
@@ -1021,7 +1021,7 @@
         <div class="result-stat-card">
           <div class="result-stat-icon blue">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#ri2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <defs><linearGradient id="ri2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00c8ff"/><stop offset="100%" stop-color="#7c6dfa"/></linearGradient></defs>
+              <defs><linearGradient id="ri2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#80ff40"/><stop offset="100%" stop-color="#c8ff00"/></linearGradient></defs>
               <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
           </div>
@@ -1033,7 +1033,7 @@
         <div class="result-stat-card">
           <div class="result-stat-icon violet">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#ri3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <defs><linearGradient id="ri3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c6dfa"/><stop offset="100%" stop-color="#b36bff"/></linearGradient></defs>
+              <defs><linearGradient id="ri3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c8ff00"/><stop offset="100%" stop-color="#f0ff00"/></linearGradient></defs>
               <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
             </svg>
           </div>
@@ -1079,9 +1079,9 @@
           <div class="ring-wrap">
             <svg width="64" height="64" viewBox="0 0 64 64">
               <circle class="ring-track" cx="32" cy="32" r="26"/>
-              <circle class="ring-fill" cx="32" cy="32" r="26" stroke="#00c8ff" data-offset="10"/>
+              <circle class="ring-fill" cx="32" cy="32" r="26" stroke="#80ff40" data-offset="10"/>
             </svg>
-            <div class="ring-val" style="color:#00c8ff">94%</div>
+            <div class="ring-val" style="color:#80ff40">94%</div>
           </div>
           <div class="metric-cell-label">Delivery Rate</div>
         </div>
@@ -1090,9 +1090,9 @@
           <div class="ring-wrap">
             <svg width="64" height="64" viewBox="0 0 64 64">
               <circle class="ring-track" cx="32" cy="32" r="26"/>
-              <circle class="ring-fill" cx="32" cy="32" r="26" stroke="#7c6dfa" data-offset="51"/>
+              <circle class="ring-fill" cx="32" cy="32" r="26" stroke="#c8ff00" data-offset="51"/>
             </svg>
-            <div class="ring-val" style="color:#7c6dfa">69%</div>
+            <div class="ring-val" style="color:#c8ff00">69%</div>
           </div>
           <div class="metric-cell-label">Open Rate</div>
         </div>
@@ -1101,9 +1101,9 @@
           <div class="ring-wrap">
             <svg width="64" height="64" viewBox="0 0 64 64">
               <circle class="ring-track" cx="32" cy="32" r="26"/>
-              <circle class="ring-fill" cx="32" cy="32" r="26" stroke="#b36bff" data-offset="136"/>
+              <circle class="ring-fill" cx="32" cy="32" r="26" stroke="#f0ff00" data-offset="136"/>
             </svg>
-            <div class="ring-val" style="color:#b36bff">17%</div>
+            <div class="ring-val" style="color:#f0ff00">17%</div>
           </div>
           <div class="metric-cell-label">Reply Rate</div>
         </div>
@@ -1112,9 +1112,9 @@
           <div class="ring-wrap">
             <svg width="64" height="64" viewBox="0 0 64 64">
               <circle class="ring-track" cx="32" cy="32" r="26"/>
-              <circle class="ring-fill" cx="32" cy="32" r="26" stroke="#22c55e" data-offset="155"/>
+              <circle class="ring-fill" cx="32" cy="32" r="26" stroke="#c8ff00" data-offset="155"/>
             </svg>
-            <div class="ring-val" style="color:#22c55e">5%</div>
+            <div class="ring-val" style="color:#c8ff00">5%</div>
           </div>
           <div class="metric-cell-label">Interested</div>
         </div>
@@ -1217,7 +1217,7 @@
         <div class="legend-item"><div class="legend-dot" style="background:var(--a1)"></div> Deliveries</div>
         <div class="legend-item"><div class="legend-dot" style="background:var(--a2)"></div> Opens</div>
         <div class="legend-item"><div class="legend-dot" style="background:var(--a3)"></div> Replies</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#22c55e"></div> Interested</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#c8ff00"></div> Interested</div>
       </div>
 
     </div>
@@ -1239,7 +1239,7 @@
         <div class="step-num">
           <div class="step-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="url(#si1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <defs><linearGradient id="si1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c6dfa"/><stop offset="100%" stop-color="#00c8ff"/></linearGradient></defs>
+              <defs><linearGradient id="si1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c8ff00"/><stop offset="100%" stop-color="#80ff40"/></linearGradient></defs>
               <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
             </svg>
           </div>
@@ -1258,7 +1258,7 @@
         <div class="step-num">
           <div class="step-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="url(#si2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <defs><linearGradient id="si2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c6dfa"/><stop offset="100%" stop-color="#b36bff"/></linearGradient></defs>
+              <defs><linearGradient id="si2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c8ff00"/><stop offset="100%" stop-color="#f0ff00"/></linearGradient></defs>
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
             </svg>
           </div>
@@ -1274,7 +1274,7 @@
         <div class="step-num">
           <div class="step-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="url(#si3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <defs><linearGradient id="si3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#b36bff"/><stop offset="100%" stop-color="#00c8ff"/></linearGradient></defs>
+              <defs><linearGradient id="si3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f0ff00"/><stop offset="100%" stop-color="#80ff40"/></linearGradient></defs>
               <path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/>
             </svg>
           </div>
@@ -1289,7 +1289,7 @@
         <div class="step-num">
           <div class="step-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="url(#si4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <defs><linearGradient id="si4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c6dfa"/><stop offset="100%" stop-color="#00c8ff"/></linearGradient></defs>
+              <defs><linearGradient id="si4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c8ff00"/><stop offset="100%" stop-color="#80ff40"/></linearGradient></defs>
               <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
             </svg>
           </div>
@@ -1388,7 +1388,7 @@
         <div class="deliver-card">
           <div class="deliver-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#gd1)" stroke-width="1.8" stroke-linecap="round">
-              <defs><linearGradient id="gd1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c6dfa"/><stop offset="100%" stop-color="#00c8ff"/></linearGradient></defs>
+              <defs><linearGradient id="gd1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c8ff00"/><stop offset="100%" stop-color="#80ff40"/></linearGradient></defs>
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
             </svg>
           </div>
@@ -1401,7 +1401,7 @@
         <div class="deliver-card">
           <div class="deliver-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#gd2)" stroke-width="1.8" stroke-linecap="round">
-              <defs><linearGradient id="gd2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c6dfa"/><stop offset="100%" stop-color="#b36bff"/></linearGradient></defs>
+              <defs><linearGradient id="gd2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c8ff00"/><stop offset="100%" stop-color="#f0ff00"/></linearGradient></defs>
               <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
             </svg>
           </div>
@@ -1414,7 +1414,7 @@
         <div class="deliver-card">
           <div class="deliver-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#gd3)" stroke-width="1.8" stroke-linecap="round">
-              <defs><linearGradient id="gd3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#b36bff"/><stop offset="100%" stop-color="#00c8ff"/></linearGradient></defs>
+              <defs><linearGradient id="gd3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f0ff00"/><stop offset="100%" stop-color="#80ff40"/></linearGradient></defs>
               <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
             </svg>
           </div>
@@ -1427,7 +1427,7 @@
         <div class="deliver-card">
           <div class="deliver-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#gd4)" stroke-width="1.8" stroke-linecap="round">
-              <defs><linearGradient id="gd4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c6dfa"/><stop offset="100%" stop-color="#00c8ff"/></linearGradient></defs>
+              <defs><linearGradient id="gd4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c8ff00"/><stop offset="100%" stop-color="#80ff40"/></linearGradient></defs>
               <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
             </svg>
           </div>
@@ -1440,7 +1440,7 @@
         <div class="deliver-card">
           <div class="deliver-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#gd5)" stroke-width="1.8" stroke-linecap="round">
-              <defs><linearGradient id="gd5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c6dfa"/><stop offset="100%" stop-color="#b36bff"/></linearGradient></defs>
+              <defs><linearGradient id="gd5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c8ff00"/><stop offset="100%" stop-color="#f0ff00"/></linearGradient></defs>
               <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
             </svg>
           </div>
