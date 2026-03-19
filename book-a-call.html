@@ -218,8 +218,10 @@
       font-size: 13px; font-weight: 600; cursor: pointer;
       transition: all .2s; color: var(--text);
     }
-    .time-slot:hover { border-color: rgba(124,109,250,.4); background: rgba(124,109,250,.06); }
+    .time-slot:not(.booked):hover { border-color: rgba(124,109,250,.4); background: rgba(124,109,250,.06); }
     .time-slot.selected { background: rgba(124,109,250,.15); border-color: var(--a1); color: var(--a1); box-shadow: 0 0 0 1px var(--a1); }
+    .time-slot.booked { opacity: .35; cursor: not-allowed; text-decoration: line-through; color: var(--muted); }
+    .time-slot.booked::after { content: ' · Booked'; font-size: 10px; }
 
     /* Submit */
     .btn-primary {
@@ -292,7 +294,6 @@
     <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
     Back to Home
   </a>
-  <div class="topbar-brand"><span class="grad-text">Synterra Digital</span></div>
 </div>
 
 <div class="page-wrap">
@@ -301,7 +302,7 @@
   <aside class="info-panel">
     <div class="info-tag">Free Discovery Call</div>
     <h1>Let's Talk About<br/><span class="grad-text">Your Growth.</span></h1>
-    <p>Book a free 30-minute discovery call with our team. We'll learn about your business, walk you through how we work, and put together a tailored strategy — no obligation.</p>
+    <p>Book a free 15-minute discovery call with our team. We'll learn about your business, walk you through how we work, and put together a tailored strategy — no obligation.</p>
 
     <div class="what-to-expect">
       <div class="expect-item">
@@ -344,7 +345,7 @@
 
     <div class="duration-badge">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      30 minutes · Free · No obligation
+      15 minutes · Free · No obligation
     </div>
   </aside>
 
@@ -502,6 +503,27 @@
 </div>
 
 <script>
+  // ── Booked slots (localStorage) ──
+  const STORAGE_KEY = 'synterra_booked_slots';
+
+  function getBookedSlots() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; }
+  }
+
+  function saveBookedSlot(dateStr, time) {
+    const slots = getBookedSlots();
+    slots.push({ date: dateStr, time });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(slots));
+  }
+
+  function isSlotBooked(dateStr, time) {
+    return getBookedSlots().some(s => s.date === dateStr && s.time === time);
+  }
+
+  function getDateKey(date) {
+    return date.toISOString().split('T')[0]; // YYYY-MM-DD
+  }
+
   // ── Calendar ──
   const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   let viewYear, viewMonth, selectedDate = null;
@@ -523,7 +545,6 @@
     const firstDay = new Date(viewYear, viewMonth, 1).getDay();
     const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
 
-    // Empty cells before first day
     for (let i = 0; i < firstDay; i++) {
       const el = document.createElement('div');
       el.className = 'cal-day empty';
@@ -543,7 +564,6 @@
       if (isPast)    el.classList.add('disabled');
       if (isWeekend) el.classList.add('weekend');
       if (date.getTime() === today.getTime()) el.classList.add('today');
-
       if (selectedDate && date.getTime() === selectedDate.getTime()) el.classList.add('selected');
 
       if (!isPast) {
@@ -556,9 +576,12 @@
 
   function selectDate(date) {
     selectedDate = date;
+    selectedTime = '';
+    document.getElementById('b-time').value = '';
     document.getElementById('b-date').value = date.toLocaleDateString('en-AU', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
     document.getElementById('selected-date-display').textContent = '📅 ' + date.toLocaleDateString('en-AU', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
     renderCalendar();
+    renderTimeSlots();
   }
 
   document.getElementById('cal-prev').addEventListener('click', () => {
@@ -576,8 +599,21 @@
 
   // ── Time slots ──
   let selectedTime = '';
+
+  function renderTimeSlots() {
+    const dateKey = selectedDate ? getDateKey(selectedDate) : null;
+    document.querySelectorAll('.time-slot').forEach(slot => {
+      const time = slot.dataset.time;
+      slot.classList.remove('selected', 'booked');
+      if (dateKey && isSlotBooked(dateKey, time)) {
+        slot.classList.add('booked');
+      }
+    });
+  }
+
   document.querySelectorAll('.time-slot').forEach(slot => {
     slot.addEventListener('click', () => {
+      if (slot.classList.contains('booked')) return;
       document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
       slot.classList.add('selected');
       selectedTime = slot.dataset.time;
@@ -655,6 +691,8 @@
       .then(r => r.json())
       .then(res => {
         if (res.success) {
+          // Save booked slot so it shows as unavailable on return visits
+          saveBookedSlot(getDateKey(selectedDate), selectedTime);
           document.getElementById('booking-form').style.display = 'none';
           document.getElementById('booking-success').style.display = 'block';
         } else {
