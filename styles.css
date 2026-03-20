@@ -395,6 +395,7 @@ footer {
 }
 .pricing-price sup { font-size: 24px; font-weight: 700; vertical-align: top; margin-top: 8px; }
 .pricing-billed { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+.pricing-note { font-size: 13px; color: var(--muted); font-style: italic; margin: 16px 0 0; line-height: 1.6; }
 .pricing-divider { height: 1px; background: var(--border); margin-bottom: 24px; }
 .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 13px; flex: 1; }
 .pricing-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text); }
