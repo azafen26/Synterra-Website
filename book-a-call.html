@@ -179,6 +179,8 @@
   </style>
 </head>
 <body>
+<div id="scroll-progress"></div>
+<div id="cursor-spotlight"></div>
 
 <div class="page-glow"></div>
 
@@ -602,6 +604,39 @@
         document.getElementById('booking-form').appendChild(err);
       });
   });
+
+  // ── Scroll progress ──
+  const progressBar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if (max > 0) progressBar.style.width = (window.scrollY / max * 100) + '%';
+  }, { passive: true });
+
+  // ── Cursor spotlight ──
+  const spotlight = document.getElementById('cursor-spotlight');
+  let spotlightVisible = false;
+  document.addEventListener('mousemove', (e) => {
+    spotlight.style.left = e.clientX + 'px';
+    spotlight.style.top  = e.clientY + 'px';
+    if (!spotlightVisible) { spotlight.style.opacity = '1'; spotlightVisible = true; }
+  });
+  document.addEventListener('mouseleave', () => { spotlight.style.opacity = '0'; spotlightVisible = false; });
+
+  // ── Card tilt on expect items ──
+  if (!window.matchMedia('(pointer: coarse)').matches) {
+    document.querySelectorAll('.expect-item').forEach(card => {
+      card.style.transition = 'transform 0.08s linear, box-shadow 0.25s, border-color 0.25s';
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const dx = (e.clientX - rect.left - rect.width  / 2) / (rect.width  / 2);
+        const dy = (e.clientY - rect.top  - rect.height / 2) / (rect.height / 2);
+        card.style.transform = `perspective(900px) rotateX(${-dy * 4}deg) rotateY(${dx * 4}deg)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
 </script>
 </body>
 </html>
