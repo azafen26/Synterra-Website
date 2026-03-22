@@ -21,6 +21,10 @@
 </head>
 <body>
 
+<!-- Scroll progress + cursor spotlight -->
+<div id="scroll-progress"></div>
+<div id="cursor-spotlight"></div>
+
 <!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
 <nav id="navbar">
   <div class="nav-inner">
@@ -61,7 +65,7 @@
       <div class="tag">B2B Outreach + Web Development</div>
       <h1 class="hero-h1">
         Scale Your Business<br/>
-        <span class="grad-text">Faster Than Ever.</span>
+        <span class="grad-text" id="typed-text">Faster Than Ever.</span>
       </h1>
       <p class="hero-sub">
         At Synterra Digital, we combine precision outreach and conversion-focused web design to fill your pipeline and close more deals — on autopilot.
@@ -92,6 +96,72 @@
   </div>
 </section>
 
+<!-- ═══════════════════════════════ SERVICES OVERVIEW ═══════════════════════════════ -->
+<section id="services-overview">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="tag">Two Services. One Goal.</div>
+      <h2 class="section-h2">What We <span class="grad-text">Do</span></h2>
+      <p class="section-sub">We help businesses grow through two core services — choose one or combine both for maximum impact.</p>
+    </div>
+    <div class="sov-grid">
+
+      <a href="#outreach" class="sov-card fade-up">
+        <div class="sov-num">01</div>
+        <div class="sov-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#sov1)" stroke-width="1.8" stroke-linecap="round">
+            <defs><linearGradient id="sov1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c8ff00"/><stop offset="100%" stop-color="#80ff40"/></linearGradient></defs>
+            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3>B2B Outreach</h3>
+        <p>Done-for-you email campaigns that reach 400+ qualified prospects per day and fill your pipeline with warm leads — on autopilot.</p>
+        <div class="sov-arrow">Explore Outreach <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c8ff00" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+      <a href="#webdev" class="sov-card fade-up" style="transition-delay:.1s">
+        <div class="sov-num">02</div>
+        <div class="sov-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#sov2)" stroke-width="1.8" stroke-linecap="round">
+            <defs><linearGradient id="sov2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c8ff00"/><stop offset="100%" stop-color="#f0ff00"/></linearGradient></defs>
+            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+          </svg>
+        </div>
+        <h3>Web Development</h3>
+        <p>Custom websites built to convert — from landing pages to full e-commerce stores, designed to turn visitors into paying clients.</p>
+        <div class="sov-arrow">Explore Web Dev <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c8ff00" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ MARQUEE ═══════════════════════════════ -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">B2B Outreach</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">400+ Prospects/Day</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Done For You</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Web Development</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Landing Pages</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">E-Commerce Stores</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Conversion Focused</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Email Campaigns</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Pipeline Growth</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Shopify Experts</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">B2B Outreach</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">400+ Prospects/Day</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Done For You</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Web Development</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Landing Pages</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">E-Commerce Stores</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Conversion Focused</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Email Campaigns</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Pipeline Growth</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Shopify Experts</span><span class="marquee-sep">·</span>
+  </div>
+</div>
+
 <!-- ═══════════════════════════════ OUTREACH ═══════════════════════════════ -->
 <section id="outreach">
   <div class="container">
@@ -111,8 +181,7 @@
         </div>
         <div class="metric grad-text">Open Rate</div>
         <h3>Visibility Turns into Opportunity</h3>
-        <p>Open rates determine how many decision-makers actually see your message. A strong open rate means your subject lines cut through the noise and land in front of the right people — the first step to generating a lead.</p>
-        <p style="margin-top:10px; color: var(--muted); font-size:14px;">Higher open rates = more eyes on your offer = more opportunities to start a conversation.</p>
+        <p>Open rates determine how many decision-makers see your message. Strong subject lines cut through the noise and land in front of the right people — the first step to a lead.</p>
       </div>
 
       <div class="card outreach-card fade-up" style="transition-delay:.1s">
@@ -124,8 +193,7 @@
         </div>
         <div class="metric grad-text">Reply Rate</div>
         <h3>Conversations That Convert</h3>
-        <p>Reply rates reveal how many prospects are genuinely interested in what you offer. Each reply is a live sales conversation — a real human engaging with your pitch. This is where pipelines are built.</p>
-        <p style="margin-top:10px; color: var(--muted); font-size:14px;">More replies = more sales conversations = more contracts signed.</p>
+        <p>Reply rates show how many prospects are genuinely interested. Each reply is a live sales conversation — a real human engaging with your pitch. This is where pipelines are built.</p>
       </div>
 
       <div class="card outreach-card fade-up" style="transition-delay:.2s">
@@ -137,8 +205,7 @@
         </div>
         <div class="metric grad-text">Interest Rate</div>
         <h3>Qualified Leads, Not Just Noise</h3>
-        <p>Interest rate measures the percentage of prospects who reply with genuine intent — asking for a quote, requesting a meeting, or wanting to learn more. These are your hottest leads, ready to buy.</p>
-        <p style="margin-top:10px; color: var(--muted); font-size:14px;">High interest rates = a pipeline full of qualified buyers ready to close.</p>
+        <p>Interest rate measures prospects who reply with genuine intent — asking for a quote, requesting a call, or wanting to learn more. These are your hottest, ready-to-buy leads.</p>
       </div>
 
     </div>
@@ -499,7 +566,7 @@
         <h3>Define Your Target Market</h3>
         <p>We work with you to identify exactly who you want to reach. The more specific, the better the results.</p>
         <div class="step-example">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c8ff00" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           Landscapers → Real Estate Agents
         </div>
       </div>
@@ -599,6 +666,20 @@
     </div>
   </div>
 </section>
+
+<!-- ═══════════════════════════════ SERVICE DIVIDER ═══════════════════════════════ -->
+<div class="service-divider">
+  <div class="container">
+    <div class="service-divider-inner">
+      <div class="service-divider-line"></div>
+      <div class="service-divider-label">
+        <span class="service-divider-num">02</span>
+        Web Development
+      </div>
+      <div class="service-divider-line"></div>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════ WEB DEV ═══════════════════════════════ -->
 <section id="webdev">
@@ -702,6 +783,95 @@
         </div>
 
       </div>
+    </div>
+
+    <!-- Web Development Pricing -->
+    <div class="section-header fade-up" style="margin-top:80px">
+      <div class="tag">Web Development Pricing</div>
+      <h2 class="section-h2">Pick Your<br/><span class="grad-text">Package</span></h2>
+      <p class="section-sub">Every site is custom-built to your goals — no templates, no shortcuts.</p>
+    </div>
+    <div class="pricing-grid" style="margin-top:48px">
+
+      <!-- Tier 1 -->
+      <div class="card pricing-card fade-up">
+        <div class="pricing-tier-label">Landing Page</div>
+        <div class="pricing-price grad-text"><sup>$</sup>700</div>
+        <div class="pricing-billed">One-time / per project</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>
+            <span class="pf-icon"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span><strong>1 custom page</strong></span>
+          </li>
+          <li>
+            <span class="pf-icon"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="pf-label">Mobile optimised</span>
+          </li>
+          <li>
+            <span class="pf-icon"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="pf-label">Contact form</span>
+          </li>
+        </ul>
+        <p class="pricing-note">Best for new brands and lead gen — get online fast and start converting</p>
+        <div class="pricing-cta">
+          <a href="#webdev-form" class="btn-primary">Get Started →</a>
+        </div>
+      </div>
+
+      <!-- Tier 2 — Popular -->
+      <div class="card pricing-card popular fade-up" style="transition-delay:.1s">
+        <div class="popular-badge">Most Popular</div>
+        <div class="pricing-tier-label">Business Website</div>
+        <div class="pricing-price grad-text"><sup>$</sup>1,500</div>
+        <div class="pricing-billed">One-time / per project</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>
+            <span class="pf-icon"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span><strong>4–6 pages</strong></span>
+          </li>
+          <li>
+            <span class="pf-icon"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="pf-label">Full branding + layout</span>
+          </li>
+          <li>
+            <span class="pf-icon"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="pf-label">Forms + basic SEO</span>
+          </li>
+        </ul>
+        <p class="pricing-note">For service businesses — build trust and generate consistent enquiries</p>
+        <div class="pricing-cta">
+          <a href="#webdev-form" class="btn-primary">Get Started →</a>
+        </div>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="card pricing-card fade-up" style="transition-delay:.2s">
+        <div class="pricing-tier-label">E-Commerce Store</div>
+        <div class="pricing-price grad-text"><sup>$</sup>2,500</div>
+        <div class="pricing-billed">One-time / per project</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>
+            <span class="pf-icon"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span><strong>Full Shopify store</strong></span>
+          </li>
+          <li>
+            <span class="pf-icon"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="pf-label">Product + checkout setup</span>
+          </li>
+          <li>
+            <span class="pf-icon"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="pf-label">Conversion-focused design</span>
+          </li>
+        </ul>
+        <p class="pricing-note">For brands selling products — turn visitors into sales</p>
+        <div class="pricing-cta">
+          <a href="#webdev-form" class="btn-primary">Get Started →</a>
+        </div>
+      </div>
+
     </div>
 
     <!-- Web Development Contact Form -->
@@ -830,26 +1000,29 @@
 
   document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
 
-  // ── Counter animation ──
+  // ── Counter animation (scramble + count — replaced below by full version) ──
   function animateCounter(el) {
     const target = parseInt(el.dataset.count, 10);
     const suffix = el.dataset.suffix || '';
-    const duration = 1800;
-    const startTime = performance.now();
-    // easeOutExpo
-    function ease(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
-    function tick(now) {
-      const elapsed = Math.min((now - startTime) / duration, 1);
-      const value = Math.round(ease(elapsed) * target);
-      el.textContent = value + suffix;
-      if (elapsed < 1) {
-        requestAnimationFrame(tick);
+    const digits = String(target).length;
+    const scrambleUntil = performance.now() + 480;
+    function scramble(now) {
+      if (now < scrambleUntil) {
+        el.textContent = String(Math.floor(Math.random() * Math.pow(10, digits))).padStart(digits, '0') + suffix;
+        requestAnimationFrame(scramble);
       } else {
-        el.textContent = target + suffix;
-        el.classList.add('counted');
+        const duration = 1600, start = performance.now();
+        function ease(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+        function tick(now) {
+          const p = Math.min((now - start) / duration, 1);
+          el.textContent = Math.round(ease(p) * target) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+          else { el.textContent = target + suffix; el.classList.add('counted'); }
+        }
+        requestAnimationFrame(tick);
       }
     }
-    requestAnimationFrame(tick);
+    requestAnimationFrame(scramble);
   }
 
   const statsObserver = new IntersectionObserver((entries) => {
@@ -971,6 +1144,133 @@
 
   setupForm('form-outreach', 'success-outreach', 'B2B Outreach Enquiry');
   setupForm('form-webdev',   'success-webdev',   'Web Development Enquiry');
+
+  // ── Scroll progress bar ──
+  const progressBar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = (scrolled / max * 100) + '%';
+  }, { passive: true });
+
+  // ── Cursor spotlight ──
+  const spotlight = document.getElementById('cursor-spotlight');
+  let spotlightVisible = false;
+  document.addEventListener('mousemove', (e) => {
+    spotlight.style.left = e.clientX + 'px';
+    spotlight.style.top  = e.clientY + 'px';
+    if (!spotlightVisible) {
+      spotlight.style.opacity = '1';
+      spotlightVisible = true;
+    }
+  });
+  document.addEventListener('mouseleave', () => {
+    spotlight.style.opacity = '0';
+    spotlightVisible = false;
+  });
+
+  // ── Card 3D tilt ──
+  document.querySelectorAll('.card, .sov-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width  / 2;
+      const cy = rect.top  + rect.height / 2;
+      const dx = (e.clientX - cx) / (rect.width  / 2);
+      const dy = (e.clientY - cy) / (rect.height / 2);
+      card.style.setProperty('--rx', (-dy * 6) + 'deg');
+      card.style.setProperty('--ry', ( dx * 6) + 'deg');
+      card.classList.add('tilting');
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.setProperty('--rx', '0deg');
+      card.style.setProperty('--ry', '0deg');
+      card.classList.remove('tilting');
+    });
+  });
+
+  // ── Typed text ──
+  const typedEl = document.getElementById('typed-text');
+  if (typedEl) {
+    const words = ['Faster Than Ever.', 'Fill Your Pipeline.', 'Close More Deals.', 'Convert More Leads.'];
+    let wordIdx = 0, charIdx = 0, deleting = false;
+    typedEl.textContent = '';
+    setTimeout(function typeLoop() {
+      const current = words[wordIdx];
+      if (deleting) {
+        charIdx--;
+        typedEl.textContent = current.slice(0, charIdx);
+        if (charIdx === 0) {
+          deleting = false;
+          wordIdx = (wordIdx + 1) % words.length;
+          setTimeout(typeLoop, 300);
+          return;
+        }
+        setTimeout(typeLoop, 45);
+      } else {
+        charIdx++;
+        typedEl.textContent = current.slice(0, charIdx);
+        if (charIdx === current.length) {
+          deleting = true;
+          setTimeout(typeLoop, 2200);
+          return;
+        }
+        setTimeout(typeLoop, 70);
+      }
+    }, 100);
+  }
+
+  // ── Word reveal on section headings ──
+  function wrapWords(el) {
+    Array.from(el.childNodes).forEach(node => {
+      if (node.nodeType === 3) {
+        const parts = node.textContent.split(/(\s+)/);
+        const frag = document.createDocumentFragment();
+        parts.forEach(part => {
+          if (/^\s+$/.test(part)) {
+            frag.appendChild(document.createTextNode(part));
+          } else if (part) {
+            const span = document.createElement('span');
+            span.className = 'wrd';
+            span.textContent = part;
+            frag.appendChild(span);
+          }
+        });
+        el.replaceChild(frag, node);
+      } else if (node.nodeType === 1 && node.tagName !== 'BR') {
+        // Wrap the whole element (e.g. .grad-text span) as a single word unit
+        // so inner styles like gradient text are preserved
+        const wrapper = document.createElement('span');
+        wrapper.className = 'wrd';
+        node.parentNode.insertBefore(wrapper, node);
+        wrapper.appendChild(node);
+      }
+    });
+  }
+  let globalWordIdx = 0;
+  document.querySelectorAll('.section-h2').forEach(h2 => {
+    wrapWords(h2);
+    h2.querySelectorAll('.wrd').forEach(span => {
+      span.style.setProperty('--wd', (globalWordIdx++ * 0.07) + 's');
+    });
+    globalWordIdx = 0; // reset per heading
+  });
+  // Re-index per heading
+  document.querySelectorAll('.section-h2').forEach(h2 => {
+    h2.querySelectorAll('.wrd').forEach((span, i) => {
+      span.style.setProperty('--wd', (i * 0.07) + 's');
+    });
+  });
+
+  // ── Section reveal lines ──
+  const lineObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('line-in');
+        lineObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('section:not(#hero)').forEach(s => lineObserver.observe(s));
 
 </script>
 </body>
